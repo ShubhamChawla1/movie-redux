@@ -94,6 +94,51 @@ Step 12 Style Header -> Header.js, Header.scss
 
 Step 13 Style Footer -> Footer.js , Footer.scss
 
+Step 14 Style Home.js 
+use Axios for API Call
 
+Follow Steps to Create Configure etc of Redux Toolkit from Offical website Redux Toolkit 
+
+Step 15 Adding Redux to Project 
+In features -> Create file store.js
+In features -> Create folder movies
+
+store.js
+
+index.js (Creating the Store we just provide our store to our components)
+
+In features -> movies folder -> Create Slice
+
+In MovieSlice.js
+import {createSlice} from reduxjs/toolkit
+
+const initialState  // set initialState
+
+Create the Reducer 
+In features -> movies -> Create movieSlice.js file.  
+
+
+
+
+
+want all movies use useSelector 
+In MovieListing.js 
+
+const movies = useSelector(getAllMovies);
+
+and in Store.js 
+reducer : {
+   movies : moviesReducer
+},
+
+
+Now we want to display all movies on are MovieListing Component 
+create let renderMovies 
+renderMovies = 
+
+
+MovieListing.scss 
+
+pass a props to MovieCard.js
 
 ->

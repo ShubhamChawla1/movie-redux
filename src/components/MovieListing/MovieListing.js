@@ -1,9 +1,46 @@
 import React from 'react'
-
+import { useSelector } from 'react-redux';
+import { getAllMovies, getAllShows } from '../../features/movies/movieSlice';
+import MovieCard from '../MovieCard/MovieCard'
+import "./MovieListing.scss";
 const MovieListing = () => {
-  return (
-    <div>MovieListing</div>
-  )
-}
+  const movies = useSelector(getAllMovies);
+  const shows = useSelector(getAllShows);
+  // console.log(movies);
+  let renderMovies = "";
 
-export default MovieListing
+  renderMovies = 
+  movies.Response === "True" ? 
+      movies.Search.map((movie, index) => (
+        <MovieCard key={`${movie.imdbID}-${index}`} data={movie} />
+      ))
+   : (
+  <div className="movies-error">
+    <h3>{movies?.Error || "No movies found!"}</h3>
+  </div>
+);
+
+const renderShows = shows && shows.Response === "True" ? (
+    shows.Search.map((show) => (
+      <MovieCard key={show.imdbID} data={show} />
+    ))
+  ) : (
+    <div className="movies-error">
+      <h3>{shows?.Error || "No shows found!"}</h3>
+    </div>
+  );
+  return (
+    <div className='movie-wrapper'>
+      <div className='movie-list'>
+        <h2>Movies</h2>
+        <div className='movie-container'>{renderMovies}</div>
+      </div>
+      <div className='show-list'>
+        <h2>Shows</h2>
+        <div className='movie-container'>{renderShows}</div>
+      </div>
+    </div>
+  );
+};
+
+export default MovieListing;
